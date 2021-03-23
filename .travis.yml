@@ -9,5 +9,8 @@ script:
 deploy:
   provider: heroku
   api_key:
-  app:
-  run: rails db:migrate
+    secure: ctD2MvSRXzHajzY7+7Kpx04dDeRIViWMGi7myMKz1N+NeTxp3oGQLh5cfmXpVfSnaziT0ibjsLydHukqrx7LP1UBEfT/xinxFA1QMtok+6BXyLXIMomEB+hVWw9xPbaXoMYlnE2EJNIJ+NqAxSp/UZHmMK6jtleU5n02Q1Wy6qTM9u2MIkgvf4fzZwchbObo1J+ESsm2zGFiKUKPxv1EsRgqXbqeSHX0tvaKp8L1204GrKxQoG2rzA7kZdHJC3c6G0fSLs2Fv1wmGeC3T+SnSMEslmnSlVu/W6avppVbS36NY5BixUcPTtQzjETU95+qT9vh2+xOGgRUcYrrJ1kvg4wMKTXDUazg4xoemuy9d4110l++RWlsiIUIu9kozELeIOr7CGpDnVFJUwx7EUGRZ4v6gyRBQy/VyFZuQzb7upBIMupZTiGLvpuPefEBrBkiaUsWiaIqhi1UcISAUXbAUFcSTKrRS89FU/c0YF7M0uYtkPtV9rdzVAmq2fx84bOzZD0ERvr2PRcI9YJzRsMaMThvAuKxK4QEtv9XOnHME7LGToU+rLk4QjAjd0VSaS9jYHGrdsbzU+vupj0E830hwG8JD3u7hgehMEMBje4MHOcbqOmHQPaMrpFRvq3iYGSz06nc7Kr6sSVlmiA5x7WoyEUyVpZyGO33Xd0sWHkzGcI=
+  app: morning-garden-45424
+  on:
+    repo: Wil-McC/viewing_party
+  skip_cleanup: 'true'
