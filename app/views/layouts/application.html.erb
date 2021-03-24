@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <header>
+      <% if current_user %>
+        <%= link_to 'Log Out', logout_path %>
+      <% end %>
+    </header>
     <main>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: name %>
