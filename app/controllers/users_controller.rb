@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       redirect_to dashboard_index_path
     else
       flash[:message] = "Invalid Information Entered"
-      redirect_to new_user_path
+      redirect_to registration_path
     end
   end
 
