@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
 
   def create
-    user = user_params
-    user[:email] = user[:email].downcase
-    new_user = User.new(user)
+    new_user = User.new(user_params)
     if new_user.save
       # refac?
       session[:user_id] = new_user.id
       redirect_to dashboard_index_path
     else
-      flash[:message] = "Invalid Information Entered"
+      flash[:message] = 'Invalid Information Entered'
       redirect_to registration_path
     end
   end
@@ -21,6 +18,8 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password)
+    new_user_params = params.require(:user).permit(:email, :password, :password_confirmation)
+    new_user_params[:email].downcase!
+    new_user_params
   end
 end
