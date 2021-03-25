@@ -281,7 +281,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   launchy
   listen (>= 3.0.5, < 3.2)
-  mimemagic (= 0.3.6)
+  mimemagic
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.7)

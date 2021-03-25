@@ -7,7 +7,7 @@ end
 
 ruby '2.5.3'
 
-gem 'mimemagic', '0.3.6'
+gem 'mimemagic'
 gem 'rails', '5.2.4.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
