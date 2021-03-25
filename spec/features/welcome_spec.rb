@@ -4,8 +4,17 @@ RSpec.describe 'welcome page' do
   it 'displays a welcome message' do
     visit root_path
 
-    expect(page).to have_content('Welcome')
-    expect(page).to have_selector('#blurb')
+    within('#blurb') do
+      expect(page).to have_content('Welcome To Viewing Party!')
+    end
+  end
+
+  it 'displays blurb about the app' do
+    visit root_path
+
+    within('#blurb') do
+      expect(page).to have_selector('#about')
+    end
   end
 
   it 'displays register links' do
