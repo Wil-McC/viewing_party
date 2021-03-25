@@ -8,7 +8,9 @@ RSpec.describe 'Log out process' do
     end
 
     it 'displays a logout link if user is logged in' do
-      user = User.create(email: 'foo@example.com', password: 'password')
+      # user = User.create(email: 'foo@example.com', password: 'password')
+
+      user = create(:user)
 
       # Log the user in
       visit login_path

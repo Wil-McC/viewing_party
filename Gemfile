@@ -7,6 +7,7 @@ end
 
 ruby '2.5.3'
 
+gem 'mimemagic'
 gem 'rails', '5.2.4.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
@@ -21,6 +22,8 @@ group :development, :test do
   gem 'pry'
   gem 'travis'
   gem 'shoulda-matchers'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
