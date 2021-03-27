@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'User dashboard' do
+RSpec.describe 'Discover page' do
   describe 'as an authenticated user' do
 
   end
