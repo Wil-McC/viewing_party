@@ -3,17 +3,17 @@
 <%= button_to 'Discover Movies', discover_path, method: :get %>
 
 <section id='friends'>
-  <h3>Friends</h3>
+  <h3 class='dashboard-header'>Friends</h3>
   <hr>
   <%= form_with url: '/friendships', id: 'form-add-friend', local: true do |f| %>
     <%= f.text_field :friend_email, value: "Friend's Email" %>
     <%= f.submit 'Add Friend' %>
   <% end %>
   <br>
-  <div class='friends-list'>
+  <div id='friend-list'>
     <% if @user.friends.count > 0 %>
       <% @user.friends.each do |friend| %>
-        <p class='friend'>friend.email</p>
+        <p class='friend'><%= friend.email %></p>
       <% end %>
     <% else %>
       <p>You currently have no friends.</p>

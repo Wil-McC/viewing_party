@@ -21,13 +21,21 @@ RSpec.describe 'User dashboard' do
     end
 
     describe 'friends section' do
+      it 'shows header' do
+        visit dashboard_path
+
+        within('#friends') do
+          header_text = page.find('.dashboard-header').text
+          expect(header_text).to have_content('Friends')
+        end
+      end
+
       it 'shows a list of my added friends' do
         friend_1 = User.find(create(:friendship, user: @user).friend_id)
         friend_2 = User.find(create(:friendship, user: @user).friend_id)
         visit dashboard_path
 
-        within('#friends') do
-          expect(page).to have_content('Friends')
+        within('#friend-list') do
           friend_elements = page.all('.friend')
           expect(friend_elements.size).to eq(2)
         end
@@ -36,8 +44,7 @@ RSpec.describe 'User dashboard' do
       it 'shows no-friends message if I am all alone' do
         visit dashboard_path
 
-        within('#friends') do
-          expect(page).to have_content('Friends')
+        within('#friend-list') do
           friend_elements = page.all('.friend')
           expect(friend_elements.size).to eq(0)
           expect(page).to have_content('You currently have no friends.')
@@ -46,13 +53,20 @@ RSpec.describe 'User dashboard' do
 
       describe 'adding a friend' do
         it 'allows me to add a friend by email' do
+          new_friend = create(:user)
           visit dashboard_path
 
           within('#friends') do
-            within('#form-add-friend') do
-              expect(page).to have_field('friend_email')
-              expect(page).to have_button('Add Friend')
-            end
+            fill_in :friend_email, with: new_friend.email
+            click_button 'Add Friend'
+          end
+
+          expect(current_path).to eq(dashboard_path)
+
+          within('#friend-list') do
+            friend_elements = page.all('.friend')
+            expect(friend_elements.size).to eq(1)
+            expect(friend_elements.first.text).to eq(new_friend.email)
           end
         end
 
@@ -66,6 +80,20 @@ RSpec.describe 'User dashboard' do
 
           expect(current_path).to eq(dashboard_path)
           expect(page).to have_content('Your friend cannot be found. Are you sure they exist?')
+        end
+
+        it 'displays an error message if the friend save fails' do
+          new_friend = create(:user)
+          allow_any_instance_of(Friendship).to receive(:save).and_return(nil)
+          visit dashboard_path
+
+          within('#friends') do
+            fill_in :friend_email, with: new_friend.email
+            click_button 'Add Friend'
+          end
+
+          expect(current_path).to eq(dashboard_path)
+          expect(page).to have_content('Your friend could not be saved.')
         end
       end
     end

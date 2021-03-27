@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
       friendship = Friendship.new(user_id: session[:user_id], friend_id: friend.id)
 
       unless (friendship.save)
-        flash[:error] = 'Your friend could not be saved'
+        flash[:error] = 'Your friend could not be saved.'
       end
     end
 
