@@ -27,27 +27,46 @@ RSpec.describe 'User dashboard' do
         visit dashboard_path
 
         within('#friends') do
+          expect(page).to have_content('Friends')
           friend_elements = page.all('.friend')
           expect(friend_elements.size).to eq(2)
         end
       end
 
-      it 'shows a form to add a friend by email' do
+      it 'shows no-friends message if I am all alone' do
         visit dashboard_path
 
         within('#friends') do
           expect(page).to have_content('Friends')
-          expect(page).to have_selector('#invite-friends') # TODO identify the form's text box
-          expect(page).to have_button('Add Friend')
+          friend_elements = page.all('.friend')
+          expect(friend_elements.size).to eq(0)
+          expect(page).to have_content('You currently have no friends.')
         end
       end
 
-      xit 'shows list of friends if I have any' do
+      describe 'adding a friend' do
+        it 'allows me to add a friend by email' do
+          visit dashboard_path
 
-      end
+          within('#friends') do
+            within('#form-add-friend') do
+              expect(page).to have_field('friend_email')
+              expect(page).to have_button('Add Friend')
+            end
+          end
+        end
 
-      xit 'shows list of friends if I am all alone' do
+        it 'displays an error message if the email entered does not exist in the app' do
+          visit dashboard_path
 
+          within('#friends') do
+            fill_in :friend_email, with: 'fake@example.com'
+            click_button 'Add Friend'
+          end
+
+          expect(current_path).to eq(dashboard_path)
+          expect(page).to have_content('Your friend cannot be found. Are you sure they exist?')
+        end
       end
     end
 
