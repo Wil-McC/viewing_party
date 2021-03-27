@@ -9,7 +9,7 @@ ruby '2.5.3'
 
 gem 'faraday'
 gem 'mimemagic'
-gem 'rails', '5.2.4.3'
+gem 'rails', '5.2.5'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -39,6 +39,8 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
