@@ -38,5 +38,11 @@ RSpec.describe 'the movieDB api service' do
         expect(top40.keys.last).to eq("Maquia: When the Promised Flower Blooms")
       end
     end
+    it "return search result(s)" do
+      VCR.use_cassette('rambo_search') do
+        rambos = TMDBService.movie_search('rambo')
+      end
+    end
+    # sad = TMDBService.movie_search('asdkjfhaskjsd')
   end
 end
