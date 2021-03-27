@@ -68,3 +68,11 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# Login a user helper method to share among our tests
+def perform_login(user)
+  visit login_path
+  fill_in :email, with: user.email
+  fill_in :password, with: user.password
+  click_button 'Log In'
+end
