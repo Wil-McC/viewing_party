@@ -2,16 +2,18 @@ require 'rails_helper'
 
 RSpec.describe 'the movieDB api service' do
   describe 'class methods' do
-    it '::get_data' do
-      raw = TMDBService.get_data("https://api.themoviedb.org/3/movie/top_rated?api_key=7977257dcd366127c720211a9f03229b&page=1")
-      expect(raw.length).to eq(4)
-      expect(raw.class).to eq(Hash)
-    end
     it '::top_forty' do
       tops = TMDBService.top_forty
 
       expect(tops.length).to eq(2)
       expect(tops.class).to eq(Array)
+    end
+    it '::movies' do
+      top40 = TMDBService.movies
+
+      expect(top40.length).to eq(40)
+      expect(top40.class).to eq(Hash)
+      expect(top40.keys.last).to eq('Spider-Man: Into the Spider-Verse')
     end
   end
 end
