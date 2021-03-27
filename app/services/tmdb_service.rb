@@ -1,20 +1,18 @@
 require 'faraday'
 require 'json'
 
-class TMDBService
-  def self.get_data(endpoint)
-    response = Faraday.get(endpoint)
-    data = response.body
-    JSON.parse(data, symbolize_names: true)
-  end
+class TMDBService < ApiService
 
   def self.top_forty
     counters = [1, 2]
-
     counters.reduce([]) do |arr, count|
-      endpoint = "https://api.themoviedb.org/3/movie/top_rated?api_key=7977257dcd366127c720211a9f03229b&page=#{count}"
-      json = get_data(endpoint)
-      arr << json[:results]
+      endpoint = '3/movie/top_rated'
+      response = @@conn.get(endpoint) do |req|
+        req.params['page'] = count
+      end
+      thing = response.body
+      thing2 = JSON.parse(thing, symbolize_names: true)
+      arr << thing2[:results]
       arr
     end
   end

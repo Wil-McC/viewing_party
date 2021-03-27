@@ -3,9 +3,8 @@ require 'json'
 
 class ApiService
 
-  def self.get_data(endpoint)
-    response = Faraday.get(endpoint)
-    data = response.body
-    JSON.parse(data, symbolize_names: true)
-  end
+  @@conn = Faraday.new(
+    url: "https://api.themoviedb.org",
+    params: {'api_key': ENV['MDB_KEY']}
+  )
 end
