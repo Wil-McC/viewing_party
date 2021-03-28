@@ -63,7 +63,8 @@ class TMDBService < ApiService
     acc
   end
 
-  def self.results(data)
+  def self.results(string)
+    data = movie_search(string)
     if data.length == 2
       counters = [0, 1]
       counters.each_with_object({}) do |count, hash|
