@@ -120,6 +120,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows correct info for a hosting card' do
+        # TODO mon start here
         hosted_party = create(:party, user: @user)
         movie = hosted_party.movie
         invitee_1 = create(:user)
@@ -134,15 +135,15 @@ RSpec.describe 'User dashboard' do
           expect(link.text).to eq(movie.name)
 
           # Date and time of event
-          expect(page).to have_content(hosted_party.start_time.to_date.to_s)
-          expect(page).to have_content(hosted_party.start_time.to_time.to_s)
+          expect(page).to have_content(hosted_party.start_time.strftime('%B %e, %Y'))
+          expect(page).to have_content(hosted_party.start_time.strftime('%l:%M %p').strip)
 
           # That I am the host
           expect(page).to have_content('Hosting')
 
           # List of friends invited
-          expect(page).to have_content(invitee_1.name)
-          expect(page).to have_content(invitee_2.name)
+          expect(page).to have_content(invitee_1.email)
+          expect(page).to have_content(invitee_2.email)
         end
       end
 

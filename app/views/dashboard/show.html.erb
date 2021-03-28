@@ -27,7 +27,13 @@
   <div id='viewing-party-list'>
     <% @viewing_parties.each do |party| %>
       <div class='viewing-party-card'>
-        <%# <p><%= party.movie.name %1></p> %>
+        <p><%= link_to party.movie.name, movie_path(party.movie) %></p>
+        <br><br>
+        <p><%= party.start_time.strftime('%B %e, %Y') %>
+        <br>
+        <p><%= party.start_time.strftime('%l:%M %p').strip %>
+        <br><br>
+        <p><%= party.user_id == @user.id ? 'Hosting' : 'Invited' %>
       </div>
     <% end %>
   </div>
