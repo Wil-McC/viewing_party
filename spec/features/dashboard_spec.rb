@@ -120,6 +120,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows correct info for a hosting card' do
+        # TODO mon start here
         hosted_party = create(:party, user: @user)
         movie = hosted_party.movie
         invitee_1 = create(:user)
