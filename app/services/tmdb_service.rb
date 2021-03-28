@@ -21,7 +21,7 @@ class TMDBService < ApiService
     counters = [0, 1]
     counters.each_with_object({}) do |count, hash|
       top_forty[count].each do |movie|
-        hash[movie[:title]] = movie[:vote_average]
+        hash[movie[:id]] = [movie[:title], movie[:vote_average]]
       end
     end
   end
@@ -55,20 +55,29 @@ class TMDBService < ApiService
       data = res_parse(search_call(endpoint, string, 2))
       acc << data[:results]
     elsif data[:total_pages] == 1
-      # just hash first page data
+      acc << data[:results]
     elsif data[:total_pages] == 0
-      # sad path?
+      return acc
     end
 
     acc
   end
 
-  def self.results(method)
-    counters = [0, 1]
-    counters.each_with_object({}) do |count, hash|
-      method[count].each do |movie|
-        hash[movie[:title]] = movie[:vote_average]
+  def self.results(data)
+    if data.length == 2
+      counters = [0, 1]
+      counters.each_with_object({}) do |count, hash|
+        data[count].each do |movie|
+          hash[movie[:id]] = [movie[:title], movie[:vote_average]]
+        end
       end
+    elsif data.length == 1
+      hash = {}
+      data[0].each_with_object({}) do |movie, hash|
+        hash[movie[:id]] = [movie[:title], movie[:vote_average]]
+      end
+    elsif data.length == 0
+      'Your search returned no results'
     end
   end
 
