@@ -17,7 +17,7 @@ RSpec.describe 'Log out process' do
       fill_in :email, with: user.email
       fill_in :password, with: user.password
       click_button 'Log In'
-      expect(current_path).to eq(dashboard_index_path)
+      expect(current_path).to eq(dashboard_path)
 
       # Log the user out
       visit root_path

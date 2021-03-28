@@ -11,7 +11,7 @@ RSpec.describe 'Login page' do
       click_button('Log In')
     end
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Welcome #{user.email}!")
   end
 

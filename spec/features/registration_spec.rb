@@ -18,7 +18,7 @@ RSpec.describe 'registration form' do
 
     click_on 'Register'
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Welcome beeps@beep.org!")
   end
 
@@ -31,7 +31,7 @@ RSpec.describe 'registration form' do
 
     click_on 'Register'
 
-    expect(current_path).to eq(dashboard_index_path)
+    expect(current_path).to eq(dashboard_path)
     expect(page).to have_content("Welcome beeps@beep.org!")
   end
 

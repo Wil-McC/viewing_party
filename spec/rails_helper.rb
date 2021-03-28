@@ -62,6 +62,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
@@ -73,4 +74,12 @@ VCR.configure do |config|
   config.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   config.hook_into :webmock
   config.filter_sensitive_data('SECURED') { ENV['MDB_KEY'] }
+end
+
+# Login a user helper method to share among our tests
+def perform_login(user)
+  visit login_path
+  fill_in :email, with: user.email
+  fill_in :password, with: user.password
+  click_button 'Log In'
 end
