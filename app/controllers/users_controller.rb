@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if new_user.save
       # refac?
       session[:user_id] = new_user.id
-      redirect_to dashboard_index_path
+      redirect_to dashboard_path
     else
       flash[:message] = 'Invalid Information Entered'
       redirect_to registration_path
