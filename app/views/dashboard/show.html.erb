@@ -25,6 +25,10 @@
   <h3 class='dashboard-header'>Viewing Parties</h3>
   <hr>
   <div id='viewing-party-list'>
-    TODO
+    <% @viewing_parties.each do |party| %>
+      <div class='viewing-party-card'>
+        <%# <p><%= party.movie.name %1></p> %>
+      </div>
+    <% end %>
   </div>
 </section>
