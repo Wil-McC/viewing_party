@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
   post '/friendships', to: 'friendships#create'
 
-  resources :movies, only: [:index, :show, ]
+  resources :movies, only: [:index, :show]
 
 end
