@@ -1,0 +1,5 @@
+<section id='results'>
+  <% @results.each do |id, (title, rating)| %>
+    <p><%= link_to "#{title} - #{rating}", url: movie_path(id) %></p>
+  <% end %>
+</section>
