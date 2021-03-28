@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def self.by_email(email)
     User.where(email: email).first
   end
+
+  def viewing_parties_invovling_me
+    hosting = parties
+  end
 end

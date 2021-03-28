@@ -26,4 +26,29 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'instance methods' do
+    describe '#viewing_parties_involving_me' do
+      it 'includes parties I am hosting' do
+        user = create(:user)
+        party_1 = create(:party, user: user)
+        party_2 = create(:party, user: user)
+
+        expect(user.viewing_parties_invovling_me).to eq([party_1, party_2])
+      end
+
+      xit 'includes parties I am invited to' do
+
+      end
+
+      xit 'shows hosted and invited-to parties together' do
+
+      end
+
+      it 'returns empty array if I am not involved with any parties :(' do
+        user = create(:user)
+        expect(user.viewing_parties_invovling_me).to eq([])
+      end
+    end
+  end
 end
