@@ -26,16 +26,16 @@ RSpec.describe 'the movieDB api service' do
         expect(top40.length).to eq(40)
         expect(top40.class).to eq(Hash)
         expect(
-          top40.keys.all? do |title|
-            title.class == String
+          top40.keys.all? do |id|
+            id.class == Integer
           end
         ).to eq(true)
         expect(
-          top40.values.all? do |rating|
-            rating.class == Float
+          top40.values.all? do |data|
+            data.class == Array
           end
         ).to eq(true)
-        expect(top40.keys.last).to eq("Maquia: When the Promised Flower Blooms")
+        expect(top40.keys.last).to eq(476292)
       end
     end
     it "return search result(s)" do
@@ -43,6 +43,31 @@ RSpec.describe 'the movieDB api service' do
         rambos = TMDBService.movie_search('rambo')
       end
     end
-    # sad = TMDBService.movie_search('asdkjfhaskjsd')
+    it "cleans data for 1 page of results" do
+      VCR.use_cassette('falafel_search') do
+        data = TMDBService.movie_search('falafel')
+        out = TMDBService.results(data)
+
+        expect(out.length).to eq(5)
+        expect(out.class).to eq(Hash)
+      end
+    end
+    it "cleans data for 2 pages of results" do
+      VCR.use_cassette('country_search') do
+        data = TMDBService.movie_search('country')
+        out = TMDBService.results(data)
+
+        expect(out.length).to eq(40)
+        expect(out.class).to eq(Hash)
+      end
+    end
+    it "sad paths empty responses" do
+      VCR.use_cassette('empty_search') do
+        sad = TMDBService.movie_search('asdkjfhaskjsd')
+        out = TMDBService.results(sad)
+
+        expect(out).to eq('Your search returned no results')
+      end
+    end
   end
 end
