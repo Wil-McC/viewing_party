@@ -99,11 +99,32 @@ RSpec.describe 'User dashboard' do
     end
 
     describe 'viewing parties section' do
-      xit 'shows partes I am hosting' do
+      it 'shows header' do
+        visit dashboard_path
 
+        within('#viewing-parties') do
+          header_text = page.find('.dashboard-header').text
+          expect(header_text).to have_content('Viewing Parties')
+        end
+      end
+
+      xit 'shows partes I am hosting' do
+        party_1 = create(:party, user: @user)
+        party_2 = create(:party, user: @user)
+        visit dashboard_path
+
+        within('#viewing-party-list') do
+          party_elements = page.all('.viewing-party-card')
+          expect(party_elements.size).to eq(2)
+          # TODO how to make sure the the 2 cards are for the 2 VPs created above?
+        end
       end
 
       xit 'shows parties I am invited to' do
+
+      end
+
+      xit 'shows hosting and invited parties at the same time' do
 
       end
     end
