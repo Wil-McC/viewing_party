@@ -1,7 +1,9 @@
-<%= form_with model: @user, local: true do |form| %>
+<%= form_with model: @user, url: registration_path, local: true do |form| %>
   <%= form.label :email, 'E-mail:' %>
-  <%= form.text_field :email %>
+  <%= form.text_field :email %><br>
   <%= form.label :password, 'Password:' %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password %><br>
+  <%= form.label :password_confirmation, 'Confirm Password:' %>
+  <%= form.password_field :password_confirmation %><br>
   <%= form.submit 'Register' %>
 <% end %>

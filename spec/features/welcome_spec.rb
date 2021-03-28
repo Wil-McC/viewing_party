@@ -22,7 +22,7 @@ RSpec.describe 'welcome page' do
 
     expect(page).to have_link('Register')
     click_link('Register')
-    expect(current_path).to eq(new_user_path)
+    expect(current_path).to eq(registration_path)
   end
 
   it 'displays login link' do
