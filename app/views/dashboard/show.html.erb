@@ -28,12 +28,12 @@
     <% @viewing_parties.each do |party| %>
       <div class='viewing-party-card'>
         <p><%= link_to party.movie.name, movie_path(party.movie) %></p>
-        <br><br>
         <p><%= party.start_time.strftime('%B %e, %Y') %>
-        <br>
         <p><%= party.start_time.strftime('%l:%M %p').strip %>
-        <br><br>
         <p><%= party.user_id == @user.id ? 'Hosting' : 'Invited' %>
+        <% party.invitees.each do |invitation| %>
+          <p><%= invitation.user.email %></p>
+        <% end %>
       </div>
     <% end %>
   </div>
