@@ -6,9 +6,6 @@ This is the base repo for the [viewing party project](https://backend.turing.io/
 
 Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
 
-### Contributors
-  - [Wil McCauley](https://www.linkedin.com/in/wil-mccauley/)
-
 ## Local Setup
 
 1. Fork and Clone the repo
@@ -24,9 +21,12 @@ Viewing party is an application in which users can explore movie options and cre
 
 Example wireframes to follow are found [here](https://backend.turing.io/module3/projects/viewing_party/wireframes)
 
-# ScreenDate, SofaPop, Project Popcorn, ScreenTeam
+# SofaPop
 
 Browse movies, create watch parties, and invite friends from one convenient dashboard-based application! Not sure what to watch with the gang? Check out current top rated movies, or search for an old favorite. View movie info including current user rating, cast, film length and more. Keep track of your watch parties on your dashboard, and invite friends to parties you host using their [name] account email.
+
+## Contributors
+  - [Wil McCauley](https://www.linkedin.com/in/wil-mccauley/)
 
 ## Summary
 
