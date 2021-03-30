@@ -26,23 +26,7 @@
   <hr>
   <div id='viewing-party-list'>
     <% @viewing_parties.each do |party| %>
-      <div class='viewing-party-card'>
-        <p><%= link_to party.movie.name, movie_path(party.movie) %></p>
-        <p><%= party.start_time.strftime('%B %e, %Y') %>
-        <p><%= party.start_time.strftime('%l:%M %p').strip %>
-        <% if party.user_id == @user.id %>
-          <p>Hosting</p>
-        <% else %>
-          <p>Hosted by: <%= party.user.email %></p>
-        <% end %>
-        <% party.invitees.each do |invitation| %>
-          <% if invitation.user.email == @user.email %>
-            <p><b><%= invitation.user.email %></b></p>
-          <% else %>
-            <p><%= invitation.user.email %></p>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: 'viewing_party_card', locals: { party: party, user: @user } %>
     <% end %>
   </div>
 </section>
