@@ -6,6 +6,9 @@ This is the base repo for the [viewing party project](https://backend.turing.io/
 
 Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
 
+### Contributors
+  - [Wil McCauley](https://www.linkedin.com/in/wil-mccauley/)
+
 ## Local Setup
 
 1. Fork and Clone the repo
@@ -41,7 +44,7 @@ Browse movies, create watch parties, and invite friends from one convenient dash
 
   - `rails db:create`
   - `bundle install`
-  
+
 
 ### Prerequisites
 
