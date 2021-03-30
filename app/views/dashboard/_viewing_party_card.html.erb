@@ -9,12 +9,16 @@
   <% end %>
   <h4>Guest List</h4>
   <ul>
-    <% party.invitees.each do |invitation| %>
-      <% if invitation.user.email == user.email %>
-        <li><b><%= invitation.user.email %></b></li>
-      <% else %>
-        <li><%= invitation.user.email %></li>
+    <% if party.invitees.count > 0 %>
+      <% party.invitees.each do |invitation| %>
+        <% if invitation.user.email == user.email %>
+          <li><b><%= invitation.user.email %></b></li>
+        <% else %>
+          <li><%= invitation.user.email %></li>
+        <% end %>
       <% end %>
+    <% else %>
+      <li>Nobody is invited to this viewing party</li>
     <% end %>
   </ul>
 </div>

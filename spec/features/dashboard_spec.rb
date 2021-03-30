@@ -121,7 +121,6 @@ RSpec.describe 'User dashboard' do
           expect(party_elements.size).to eq(0)
           expect(page).to have_content('You currently have no viewing parties.')
         end
-        save_and_open_page
       end
 
       it 'shows partes I am hosting' do
@@ -228,6 +227,19 @@ RSpec.describe 'User dashboard' do
           party_elements = page.all('.viewing-party-card')
           expect(party_elements.size).to eq(2)
         end
+      end
+
+      it 'shows message if nobody is invited to the viewing party' do
+        login_user
+        party = create(:party, user: @user)
+        visit dashboard_path
+
+        expect(page.all('.viewing-party-card').size).to eq(1)
+
+        within('.viewing-party-card') do
+          expect(page).to have_content('Nobody is invited to this viewing party')
+        end
+        save_and_open_page
       end
     end
   end
