@@ -1,17 +1,20 @@
 <div class='viewing-party-card'>
   <p><%= link_to party.movie.name, movie_path(party.movie) %></p>
-  <p><%= party.start_time.strftime('%B %e, %Y') %>
-  <p><%= party.start_time.strftime('%l:%M %p').strip %>
+  <p>Date: <%= party.start_time.strftime('%B %e, %Y') %>
+  <p>Time: <%= party.start_time.strftime('%l:%M %p').strip %>
   <% if party.user_id == user.id %>
     <p>Hosting</p>
   <% else %>
     <p>Hosted by: <%= party.user.email %></p>
   <% end %>
-  <% party.invitees.each do |invitation| %>
-    <% if invitation.user.email == user.email %>
-      <p><b><%= invitation.user.email %></b></p>
-    <% else %>
-      <p><%= invitation.user.email %></p>
+  <h4>Guest List</h4>
+  <ul>
+    <% party.invitees.each do |invitation| %>
+      <% if invitation.user.email == user.email %>
+        <li><b><%= invitation.user.email %></b></li>
+      <% else %>
+        <li><%= invitation.user.email %></li>
+      <% end %>
     <% end %>
-  <% end %>
+  </ul>
 </div>
