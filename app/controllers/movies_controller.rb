@@ -10,5 +10,6 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @movie_details = TMDBService.details_for(params[:id])
   end
 end
