@@ -33,7 +33,6 @@ RSpec.describe 'Discover page' do
 
         fill_in :query, with: 'rambo'
         click_button 'Search'
-        save_and_open_page
 
         within('#results') do
           expect(current_path).to eq(movies_path)
