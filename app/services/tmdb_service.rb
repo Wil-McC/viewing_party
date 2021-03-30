@@ -94,7 +94,14 @@ class TMDBService < ApiService
     OpenStruct.new({
       title: data[:title],
       vote_average: data[:vote_average],
-      runtime: data[:runtime]
+      runtime: data[:runtime],
+      genres: parse_genres(data[:genres])
     })
+  end
+
+  def self.parse_genres(genres)
+    genres.map do |genre|
+      genre[:name]
+    end
   end
 end

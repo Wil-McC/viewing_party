@@ -12,6 +12,7 @@ RSpec.describe 'the movieDB api service' do
           expect(result.title).to eq('Rambo')
           expect(result.vote_average).to eq(6.6)
           expect(result.runtime).to eq(92)
+          expect(result.genres).to eq(['Action', 'Thriller'])
         end
       end
     end

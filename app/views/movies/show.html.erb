@@ -2,6 +2,7 @@
   <h1><%= @movie_details.title %></h1>
   <p>
     <b>Vote Average:</b> <%= @movie_details.vote_average %> |
-    <b>Runtime:</b> <%= @movie_details.runtime %> minutes
+    <b>Runtime:</b> <%= @movie_details.runtime %> minutes |
+    <b>Genre(s):</b> <%= @movie_details.genres.to_sentence %>
   </p>
 </div>

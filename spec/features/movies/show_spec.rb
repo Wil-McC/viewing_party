@@ -16,6 +16,8 @@ RSpec.describe 'Movie details page' do
             expect(page).to have_content('Rambo')
             expect(page).to have_content('6.6')
             expect(page).to have_content('92')
+            expect(page).to have_content('Action')
+            expect(page).to have_content('Thriller')
           end
         end
       end
