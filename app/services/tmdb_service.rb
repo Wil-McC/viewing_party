@@ -78,4 +78,21 @@ class TMDBService < ApiService
       'Your search returned no results'
     end
   end
+
+  def self.details_for(id)
+    endpoint = "3/movie/#{id}"
+    result = @@conn.get(endpoint)
+    # TODO will crash if result is ''
+    data = res_parse(result)
+
+    create_details_struct(data)
+  end
+
+  private
+
+  def self.create_details_struct(data)
+    OpenStruct.new({
+      title: data[:title]
+    })
+  end
 end
