@@ -9,9 +9,9 @@ RSpec.describe User, type: :model do
   describe 'relationships' do
     it { should have_many :friendships }
     it { should have_many(:friends).through(:friendships) }
-    it { should have_many :parties }
+    it { should have_many :hosted_parties }
     it { should have_many :invitations }
-    it { should have_many(:invited_to_parties).through(:invitations) }
+    it { should have_many(:invited_parties).through(:invitations) }
   end
 
   describe 'class methods' do
@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
         expect(User.by_email(user.email)).to eq(user)
       end
 
-      it 'returns ___ if there is no user with that email' do
+      it 'returns nil if there is no user with that email' do
         expect(User.by_email('foo@example.com')).to be_nil
       end
     end
