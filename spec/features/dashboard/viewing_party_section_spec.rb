@@ -144,8 +144,8 @@ RSpec.describe 'User Dashboard Viewing Party Section' do
     end
   end
 
-    def login_user
-      @user = create(:user)
-      perform_login(@user)
-    end
+  def login_user
+    @user = create(:user)
+    perform_login(@user)
+  end
 end
