@@ -2,7 +2,6 @@ require 'faraday'
 require 'json'
 
 class TMDBService < ApiService
-
   def self.top_forty
     counters = [1, 2]
     counters.reduce([]) do |arr, count|
