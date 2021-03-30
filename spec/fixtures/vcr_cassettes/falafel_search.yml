@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.themoviedb.org/3/search/movie?api_key=SECURED&page=1&query=falafel
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sun, 28 Mar 2021 19:21:05 GMT
+      Server:
+      - openresty
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, PUT, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - ETag, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After,
+        Content-Length, Content-Range
+      Cache-Control:
+      - public, max-age=600
+      Vary:
+      - Accept-Encoding
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 dc50b0effd72a7b2c19bcb0909cfae82.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - DEN50-C2
+      X-Amz-Cf-Id:
+      - U36lXr-STDxy4BwN3KHbrpkTb4O7gAUiRgJ3v0ZmehrYukGF11-ZoQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJwYWdlIjoxLCJyZXN1bHRzIjpbeyJhZHVsdCI6ZmFsc2UsImJhY2tkcm9wX3BhdGgiOm51bGwsImdlbnJlX2lkcyI6WzE4XSwiaWQiOjEwODg4LCJvcmlnaW5hbF9sYW5ndWFnZSI6ImVuIiwib3JpZ2luYWxfdGl0bGUiOiJGYWxhZmVsIiwib3ZlcnZpZXciOiJFdmVyeXRoaW5nIGJhZCB0aGF0IGNhbiBoYXBwZW4gb24gdGhlIHdheSB0byBhIHBhcnR5IGhhcHBlbnMgdG8geW91bmcgVG91IG9uIHRoaXMgbmlnaHR0aW1lIHRyaXAgdGhvdWdoIEJlaXJ1dC4iLCJwb3B1bGFyaXR5IjoyLjI5NywicG9zdGVyX3BhdGgiOm51bGwsInJlbGVhc2VfZGF0ZSI6IjIwMDYtMDktMTYiLCJ0aXRsZSI6IkZhbGFmZWwiLCJ2aWRlbyI6ZmFsc2UsInZvdGVfYXZlcmFnZSI6Niwidm90ZV9jb3VudCI6MX0seyJhZHVsdCI6ZmFsc2UsImJhY2tkcm9wX3BhdGgiOm51bGwsImdlbnJlX2lkcyI6W10sImlkIjo3ODQxODUsIm9yaWdpbmFsX2xhbmd1YWdlIjoiZW4iLCJvcmlnaW5hbF90aXRsZSI6IkZhbGFmZWwgQ2FydCIsIm92ZXJ2aWV3IjoiRHVyaW5nIGEgc3Rvcm15IG5pZ2h0LCBhIGxvbmVseSBhbmQgaXNvbGF0ZWQgZmFsYWZlbCBjYXJ0IG93bmVyIHN0dW1ibGVzIHVwb24gYSBteXN0ZXJpb3VzIGZsb3dlciB0aGF0IHdoaXJscyBoaW0gaW50byB0aGUgbWVtb3JpZXMgb2YgaGlzIHBhc3QuIiwicG9wdWxhcml0eSI6MC42LCJwb3N0ZXJfcGF0aCI6Ii9sRDBqMkJqelRGOUpETTJXMWhMc1dKS1JPV0QuanBnIiwicmVsZWFzZV9kYXRlIjoiMjAyMC0wOC0wMiIsInRpdGxlIjoiRmFsYWZlbCBDYXJ0IiwidmlkZW8iOmZhbHNlLCJ2b3RlX2F2ZXJhZ2UiOjAsInZvdGVfY291bnQiOjB9LHsiYWR1bHQiOmZhbHNlLCJiYWNrZHJvcF9wYXRoIjpudWxsLCJnZW5yZV9pZHMiOlsxNl0sImlkIjo3NDIxMDIsIm9yaWdpbmFsX2xhbmd1YWdlIjoiZW4iLCJvcmlnaW5hbF90aXRsZSI6IkZhbGFmZWwgU3VuZGF5cyIsIm92ZXJ2aWV3IjoiVGhlIHNob3J0IGlzIGFib3V0IGEgY29ubmVjdGlvbiB0byBhIHRpbWUsIGZvb2QgYW5kIGEgcGVyc29uIHdobyBzZXJ2ZXMgaXQuIEl0IHJldm9sdmVzIGFyb3VuZCBmbGVldGluZyBjb25uZWN0aW9ucyBhbmQgdGlueSBpbnRlcmFjdGlvbnMsIHRoYXQgYmVjb21lIGEgcGFydCBvZiBvdXIgbm9zdGFsZ2ljIHBhc3QuIiwicG9wdWxhcml0eSI6MC42LCJwb3N0ZXJfcGF0aCI6Ii9pSFN2NEtON3M3dG1XaVlYMGRlWEpHcklmWGguanBnIiwicmVsZWFzZV9kYXRlIjoiMjAyMC0wNi0zMCIsInRpdGxlIjoiRmFsYWZlbCBTdW5kYXlzIiwidmlkZW8iOmZhbHNlLCJ2b3RlX2F2ZXJhZ2UiOjAsInZvdGVfY291bnQiOjB9LHsiYWR1bHQiOmZhbHNlLCJiYWNrZHJvcF9wYXRoIjoiL3ZzWDJ4a1RDU2Vzc1VacEwxZG9sNWszb1NocC5qcGciLCJnZW5yZV9pZHMiOlszNV0sImlkIjozNTkyOTgsIm9yaWdpbmFsX2xhbmd1YWdlIjoiZW4iLCJvcmlnaW5hbF90aXRsZSI6Itek15zXkNek15wg15DXmNeV157XmSIsIm92ZXJ2aWV3IjoiVHdvIGdpcmxzIGZyb20gbnVjbGVhciB0b3ducyBpbiBJc3JhZWwgYW5kIElyYW4gc3BpbGwgdGhlaXIgY291bnRyaWVzIG1vc3QgdmFsdWFibGUgc2VjcmV0cyBvbiBGYWNlYm9vayB3aGlsZSB0cnlpbmcgdG8gcHJldmVudCBhIG51Y2xlYXIgY3Jpc2lzLiIsInBvcHVsYXJpdHkiOjMuMDQ4LCJwb3N0ZXJfcGF0aCI6Ii8ycE8wQkNDbE9aSEtoS3k5eTZXQzkxT1Rha3YuanBnIiwicmVsZWFzZV9kYXRlIjoiMjAxNS0wOS0xMCIsInRpdGxlIjoiQXRvbWljIEZhbGFmZWwiLCJ2aWRlbyI6ZmFsc2UsInZvdGVfYXZlcmFnZSI6Ni4xLCJ2b3RlX2NvdW50IjoyMH0seyJhZHVsdCI6ZmFsc2UsImJhY2tkcm9wX3BhdGgiOm51bGwsImdlbnJlX2lkcyI6WzM1LDE4XSwiaWQiOjY4ODUxNSwib3JpZ2luYWxfbGFuZ3VhZ2UiOiJoZSIsIm9yaWdpbmFsX3RpdGxlIjoi16nXqdeZINen16nXqiDXnNeQINeQ15XXm9ecINek15zXkNek15wiLCJvdmVydmlldyI6IklkbyBoYXRlcyB3b3JraW5nIGF0IHRoZSBsb2NhbCBGYWxhZmVsIHNob3AuIEhlIHN0YXlzIHRoZXJlIGJlY2F1c2Ugb2YgaGlzIHNoaWZ0IG1hbmFnZXIsIEhhZGFzLCBidXQgaGUgZG9lc24ndCBoYXZlIHRoZSBndXRzIHRvIHRlbGwgaGVyIHRoYXQgaGUgbG92ZXMgaGVyLiBXaWxsIFNhc3NpIEtlc2hldCwgYSBHYW1lIHNob3cgaG9zdCBmb3IgdGhlIHBhc3QgMjAgeWVhcnMsIGhlbHAgaGltIG92ZXJjb21lIGhpcyBmZWFycz8iLCJwb3B1bGFyaXR5IjowLjYyNSwicG9zdGVyX3BhdGgiOiIvbUtXZDBDV09rVUtVcFVyVERzTHpwV3hUaHhzLmpwZyIsInJlbGVhc2VfZGF0ZSI6IjIwMTMtMDctMjQiLCJ0aXRsZSI6IlNhc3NpIEtlc2hldCBOZXZlciBFYXRzIEZhbGFmZWwiLCJ2aWRlbyI6ZmFsc2UsInZvdGVfYXZlcmFnZSI6MTAsInZvdGVfY291bnQiOjF9XSwidG90YWxfcGFnZXMiOjEsInRvdGFsX3Jlc3VsdHMiOjV9
+  recorded_at: Sun, 28 Mar 2021 19:21:05 GMT
+recorded_with: VCR 6.0.0
