@@ -21,6 +21,18 @@ RSpec.describe 'Movie details page' do
           end
         end
       end
+
+      it 'shows movie summary' do
+        VCR.use_cassette('rambo_movie_details') do
+          login_and_visit_path
+
+          within('#info #summary') do
+            paragraphs = page.find_all('p')
+            expect(paragraphs.size).to eq(1)
+            expect(paragraphs[0].text).to include('When governments fail to act on behalf of captive missionaries, ex-Green Beret John James Rambo')
+          end
+        end
+      end
     end
 
     describe 'cast list' do

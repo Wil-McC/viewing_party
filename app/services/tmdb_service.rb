@@ -95,7 +95,8 @@ class TMDBService < ApiService
       title: data[:title],
       vote_average: data[:vote_average],
       runtime: data[:runtime],
-      genres: parse_genres(data[:genres])
+      genres: parse_genres(data[:genres]),
+      summary: data[:overview]
     })
   end
 

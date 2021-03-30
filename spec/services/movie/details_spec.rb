@@ -13,6 +13,7 @@ RSpec.describe 'the movieDB api service' do
           expect(result.vote_average).to eq(6.6)
           expect(result.runtime).to eq(92)
           expect(result.genres).to eq(['Action', 'Thriller'])
+          expect(result.summary).to include('When governments fail to act on behalf of captive missionaries, ex-Green Beret John James Rambo')
         end
       end
     end

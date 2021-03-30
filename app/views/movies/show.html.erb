@@ -5,4 +5,8 @@
     <b>Runtime:</b> <%= @movie_details.runtime %> minutes |
     <b>Genre(s):</b> <%= @movie_details.genres.to_sentence %>
   </p>
+  <section id='summary'>
+    <h3>Summary</h3>
+    <p><%= @movie_details.summary %></p>
+  </section>
 </div>
