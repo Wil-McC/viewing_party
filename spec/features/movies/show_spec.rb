@@ -8,12 +8,14 @@ RSpec.describe 'Movie details page' do
 
     describe 'movie info' do
       # Name, vote average, runtime, genres, summary
-      it 'shows movie name' do
+      it 'shows movie title, vote average, runtime' do
         VCR.use_cassette('rambo_movie_details') do
           login_and_visit_path
 
           within('#info') do
             expect(page).to have_content('Rambo')
+            expect(page).to have_content('6.6')
+            expect(page).to have_content('92')
           end
         end
       end
