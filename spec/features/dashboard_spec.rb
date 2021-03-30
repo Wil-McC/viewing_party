@@ -108,7 +108,16 @@ RSpec.describe 'User dashboard' do
         end
       end
 
-      xit 'shows partes I am hosting' do
+      it 'shows nothing if I am not hosting or invited to any parties' do
+        visit dashboard_path
+
+        within('#viewing-party-list') do
+          party_elements = page.all('.viewing-party-card')
+          expect(party_elements.size).to eq(0)
+        end
+      end
+
+      it 'shows partes I am hosting' do
         party_1 = create(:party, user: @user)
         party_2 = create(:party, user: @user)
         visit dashboard_path
@@ -120,7 +129,6 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows correct info for a hosting card' do
-        # TODO mon start here
         hosted_party = create(:party, user: @user)
         movie = hosted_party.movie
         invitee_1 = create(:user)
@@ -128,6 +136,10 @@ RSpec.describe 'User dashboard' do
         hosted_party.invitees << Invitee.new(party_id: hosted_party.id, user_id: invitee_1.id)
         hosted_party.invitees << Invitee.new(party_id: hosted_party.id, user_id: invitee_2.id)
         visit dashboard_path
+
+        within('#viewing-party-list') do
+          expect(page.all('.viewing-party-card').size).to eq(1)
+        end
 
         within('.viewing-party-card') do
           # Movie title, which is a link to it's show apge
@@ -147,20 +159,63 @@ RSpec.describe 'User dashboard' do
         end
       end
 
-      xit 'shows correct info for an invitee card' do
-        hosted_party = create(:party, user: @user)
+      it 'shows parties I am invited to' do
+        party_1 = create(:party)
+        party_2 = create(:party)
+        party_1.invitees << Invitee.new(user_id: @user.id)
+        party_2.invitees << Invitee.new(user_id: @user.id)
         visit dashboard_path
 
-        within('#viewing-party-card') do
+        within('#viewing-party-list') do
+          party_elements = page.all('.viewing-party-card')
+          expect(party_elements.size).to eq(2)
         end
       end
 
-      xit 'shows parties I am invited to' do
+      it 'shows correct info for an invitee card' do
+        party = create(:party)
+        movie = party.movie
+        invitee_1 = create(:user)
+        invitee_2 = create(:user)
+        party.invitees << Invitee.new(user_id: @user.id)
+        party.invitees << Invitee.new(user_id: invitee_1.id)
+        party.invitees << Invitee.new(user_id: invitee_2.id)
+        visit dashboard_path
 
+        within('#viewing-party-list') do
+          expect(page.all('.viewing-party-card').size).to eq(1)
+        end
+
+        within('.viewing-party-card') do
+          # Movie title, which is a link to it's show apge
+          link = page.find(:css, "a[href='#{movie_path(movie)}']")
+          expect(link.text).to eq(movie.name)
+
+          # Date and time of event
+          expect(page).to have_content(party.start_time.strftime('%B %e, %Y'))
+          expect(page).to have_content(party.start_time.strftime('%l:%M %p').strip)
+
+          # Who is hosting it
+          expect(page).to have_content(party.user.email)
+
+          # List of friends invited, with me in bold
+          page.find(:css, 'b', text: @user.email)
+          expect(page).to have_content(@user.email)
+          expect(page).to have_content(invitee_1.email)
+          expect(page).to have_content(invitee_2.email)
+        end
       end
 
-      xit 'shows hosting and invited parties at the same time' do
+      it 'shows hosting and invited parties at the same time' do
+        party_1 = create(:party, user: @user)
+        party_2 = create(:party)
+        party_2.invitees << Invitee.new(user_id: @user.id)
+        visit dashboard_path
 
+        within('#viewing-party-list') do
+          party_elements = page.all('.viewing-party-card')
+          expect(party_elements.size).to eq(2)
+        end
       end
     end
   end

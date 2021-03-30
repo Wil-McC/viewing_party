@@ -30,9 +30,17 @@
         <p><%= link_to party.movie.name, movie_path(party.movie) %></p>
         <p><%= party.start_time.strftime('%B %e, %Y') %>
         <p><%= party.start_time.strftime('%l:%M %p').strip %>
-        <p><%= party.user_id == @user.id ? 'Hosting' : 'Invited' %>
+        <% if party.user_id == @user.id %>
+          <p>Hosting</p>
+        <% else %>
+          <p>Hosted by: <%= party.user.email %></p>
+        <% end %>
         <% party.invitees.each do |invitation| %>
-          <p><%= invitation.user.email %></p>
+          <% if invitation.user.email == @user.email %>
+            <p><b><%= invitation.user.email %></b></p>
+          <% else %>
+            <p><%= invitation.user.email %></p>
+          <% end %>
         <% end %>
       </div>
     <% end %>
