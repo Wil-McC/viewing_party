@@ -30,8 +30,6 @@ class TMDBService < ApiService
     string.gsub(/[ ]/, '+')
   end
 
-  # start sandbox
-
   def self.search_call(endpoint, string, page = 1)
     @@conn.get(endpoint) do |req|
       req.params['query'] = string_cleaner(string)
@@ -81,17 +79,4 @@ class TMDBService < ApiService
       'Your search returned no results'
     end
   end
-
-  # end sandbox
-
-  # def self.movie_search(string)
-    # endpoint = '3/search/movie'
-
-    # response = @@conn.get(endpoint) do |req|
-      # req.params['query'] = string_cleaner(string)
-    # end
-
-    # json = response.body
-    # data = JSON.parse(json, symbolize_names: true)
-  # end
 end
