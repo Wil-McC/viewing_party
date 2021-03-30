@@ -17,5 +17,25 @@ RSpec.describe 'the movieDB api service' do
         end
       end
     end
+
+    describe '::cast_for' do
+      it 'returns array or ostruct, each with actor and character names' do
+        VCR.use_cassette('rambo_movie_cast') do
+          result = TMDBService.cast_for(7555, 10)
+
+          expect(result).to be_an(Array)
+          first = result.first
+          last = result.last
+          expect(first).to be_an(OpenStruct)
+          expect(last).to be_an(OpenStruct)
+
+          expect(first.actor).to eq('Sylvester Stallone')
+          expect(first.character).to eq('John Rambo')
+
+          expect(last.actor).to eq('Cameron Pearson')
+          expect(last.character).to eq('Jeff')
+        end
+      end
+    end
   end
 end

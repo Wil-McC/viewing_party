@@ -80,12 +80,19 @@ class TMDBService < ApiService
   end
 
   def self.details_for(id)
-    endpoint = "3/movie/#{id}"
-    result = @@conn.get(endpoint)
+    result = @@conn.get("3/movie/#{id}")
     # TODO will crash if result is ''
     data = res_parse(result)
 
     create_details_struct(data)
+  end
+
+  def self.cast_for(id, limit)
+    result = @@conn.get("3/movie/#{id}/credits")
+    # TODO will crash if result is ''
+    data = res_parse(result)
+
+    create_cast_struct(data, limit)
   end
 
   private
@@ -104,5 +111,18 @@ class TMDBService < ApiService
     genres.map do |genre|
       genre[:name]
     end
+  end
+
+  def self.create_cast_struct(data, limit)
+    cast = []
+    data[:cast].each_with_index do |cast_member, i|
+      break if i == limit
+      cast << OpenStruct.new({
+        actor: cast_member[:name],
+        character: cast_member[:character]
+      })
+    end
+
+    cast
   end
 end

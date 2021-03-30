@@ -9,7 +9,7 @@ RSpec.describe 'Movie details page' do
     describe 'movie info' do
       # Name, vote average, runtime, genres, summary
       it 'shows movie title, vote average, runtime' do
-        VCR.use_cassette('rambo_movie_details') do
+        VCR.use_cassette('rambo_movie_show_page') do
           login_and_visit_path
 
           within('#info') do
@@ -23,7 +23,7 @@ RSpec.describe 'Movie details page' do
       end
 
       it 'shows movie summary' do
-        VCR.use_cassette('rambo_movie_details') do
+        VCR.use_cassette('rambo_movie_show_page') do
           login_and_visit_path
 
           within('#info #summary') do
@@ -36,7 +36,19 @@ RSpec.describe 'Movie details page' do
     end
 
     describe 'cast list' do
-      # First 10 cast members
+      it 'shows first 10 cast members' do
+        VCR.use_cassette('rambo_movie_show_page') do
+          login_and_visit_path
+
+          within('#info #cast') do
+            cast_elements = page.find_all('.cast-member')
+            expect(cast_elements.size).to eq(10)
+            expect(cast_elements.first.text).to eq('Sylvester Stallone as John Rambo')
+            expect(cast_elements.last.text).to eq('Cameron Pearson as Jeff')
+          end
+          save_and_open_page
+        end
+      end
     end
 
     describe 'reviews section' do

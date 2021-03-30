@@ -9,4 +9,14 @@
     <h3>Summary</h3>
     <p><%= @movie_details.summary %></p>
   </section>
+  <hr>
+  <section id='cast'>
+    <h3>Cast</h3>
+    <ul>
+      <% @movie_cast.each do |member| %>
+        <li class='cast-member'><%= member.actor %> as <%= member.character %></li>
+      <% end %>
+    </ul>
+  </section>
+  <hr>
 </div>
