@@ -25,8 +25,12 @@
   <h3 class='dashboard-header'>Viewing Parties</h3>
   <hr>
   <div id='viewing-party-list'>
-    <% @viewing_parties.each do |party| %>
-      <%= render partial: 'viewing_party_card', locals: { party: party, user: @user } %>
+    <% if @viewing_partes.nil? %>
+      <p>You currently have no viewing parties.</p>
+    <% else %>
+      <% @viewing_parties.each do |party| %>
+        <%= render partial: 'viewing_party_card', locals: { party: party, user: @user } %>
+      <% end %>
     <% end %>
   </div>
 </section>

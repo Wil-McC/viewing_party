@@ -112,14 +112,16 @@ RSpec.describe 'User dashboard' do
         end
       end
 
-      it 'shows nothing if I am not hosting or invited to any parties' do
+      it 'shows message if I am not hosting or invited to any parties' do
         login_user
         visit dashboard_path
 
         within('#viewing-party-list') do
           party_elements = page.all('.viewing-party-card')
           expect(party_elements.size).to eq(0)
+          expect(page).to have_content('You currently have no viewing parties.')
         end
+        save_and_open_page
       end
 
       it 'shows partes I am hosting' do
