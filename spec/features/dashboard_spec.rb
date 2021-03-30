@@ -1,18 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'User dashboard' do
-  before :each do
-    @user = create(:user)
-    perform_login(@user)
-  end
-
   describe 'as an authenticated user' do
     it 'shows welcome message' do
+      login_user
       visit dashboard_path
       expect(page).to have_content("Welcome #{@user.email}!")
     end
 
     it 'shows a button to discover movies' do
+      login_user
       visit dashboard_path
 
       expect(page).to have_button('Discover Movies')
@@ -22,6 +19,7 @@ RSpec.describe 'User dashboard' do
 
     describe 'friends section' do
       it 'shows header' do
+        login_user
         visit dashboard_path
 
         within('#friends') do
@@ -31,6 +29,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows a list of my added friends' do
+        login_user
         friend_1 = User.find(create(:friendship, user: @user).friend_id)
         friend_2 = User.find(create(:friendship, user: @user).friend_id)
         visit dashboard_path
@@ -42,6 +41,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows no-friends message if I am all alone' do
+        login_user
         visit dashboard_path
 
         within('#friend-list') do
@@ -53,6 +53,7 @@ RSpec.describe 'User dashboard' do
 
       describe 'adding a friend' do
         it 'allows me to add a friend by email' do
+          login_user
           new_friend = create(:user)
           visit dashboard_path
 
@@ -71,6 +72,7 @@ RSpec.describe 'User dashboard' do
         end
 
         it 'displays an error message if the email entered does not exist in the app' do
+          login_user
           visit dashboard_path
 
           within('#friends') do
@@ -83,6 +85,7 @@ RSpec.describe 'User dashboard' do
         end
 
         it 'displays an error message if the friend save fails' do
+          login_user
           new_friend = create(:user)
           allow_any_instance_of(Friendship).to receive(:save).and_return(nil)
           visit dashboard_path
@@ -100,6 +103,7 @@ RSpec.describe 'User dashboard' do
 
     describe 'viewing parties section' do
       it 'shows header' do
+        login_user
         visit dashboard_path
 
         within('#viewing-parties') do
@@ -109,6 +113,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows nothing if I am not hosting or invited to any parties' do
+        login_user
         visit dashboard_path
 
         within('#viewing-party-list') do
@@ -118,6 +123,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows partes I am hosting' do
+        login_user
         party_1 = create(:party, user: @user)
         party_2 = create(:party, user: @user)
         visit dashboard_path
@@ -129,6 +135,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows correct info for a hosting card' do
+        login_user
         hosted_party = create(:party, user: @user)
         movie = hosted_party.movie
         invitee_1 = create(:user)
@@ -160,6 +167,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows parties I am invited to' do
+        login_user
         party_1 = create(:party)
         party_2 = create(:party)
         party_1.invitees << Invitee.new(user_id: @user.id)
@@ -173,6 +181,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows correct info for an invitee card' do
+        login_user
         party = create(:party)
         movie = party.movie
         invitee_1 = create(:user)
@@ -207,6 +216,7 @@ RSpec.describe 'User dashboard' do
       end
 
       it 'shows hosting and invited parties at the same time' do
+        login_user
         party_1 = create(:party, user: @user)
         party_2 = create(:party)
         party_2.invitees << Invitee.new(user_id: @user.id)
@@ -221,11 +231,16 @@ RSpec.describe 'User dashboard' do
   end
 
   describe 'as a non-authenticated user' do
-    xit 'redirects to homepage with a flash message' do
+    it 'redirects to homepage with a flash message' do
       visit dashboard_path
 
       expect(current_path).to eq root_path
       expect(page).to have_content('You must be logged in to access this section')
     end
+  end
+
+  def login_user
+    @user = create(:user)
+    perform_login(@user)
   end
 end
