@@ -108,6 +108,7 @@ class TMDBService < ApiService
 
   def self.create_details_struct(data)
     OpenStruct.new({
+      api_id: data[:id],
       title: data[:title],
       vote_average: data[:vote_average],
       runtime: data[:runtime],

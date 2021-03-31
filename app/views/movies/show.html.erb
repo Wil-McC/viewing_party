@@ -1,3 +1,10 @@
+<%= form_with url: '/', method: :get, local: true do |f| %>
+  <%= f.hidden_field 'movie[api_id]', value: @movie_details.api_id %>
+  <%= f.hidden_field 'movie[title]', value: @movie_details.title %>
+  <%= f.hidden_field 'movie[runtime]', value: @movie_details.runtime %>
+  <%= f.submit 'Create Viewing Party for Movie' %>
+<% end %>
+
 <div id='info'>
   <h1><%= @movie_details.title %></h1>
   <p>

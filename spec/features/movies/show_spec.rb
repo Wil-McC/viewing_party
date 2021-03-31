@@ -2,8 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'Movie details page' do
   describe 'as an authenticated user' do
-   xit 'shows a button to create a viewing party for this movie' do
+    it 'shows a button to create a viewing party for this movie' do
+        VCR.use_cassette('rambo_movie_show_page') do
+          login_and_visit_path
 
+          expect(page).to have_button('Create Viewing Party for Movie')
+          click_button('Create Viewing Party for Movie')
+          # expect(current_path).to eq(new_party_path)
+        end
     end
 
     describe 'movie info' do
