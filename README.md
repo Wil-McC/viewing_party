@@ -36,12 +36,11 @@ Browse movies, create watch parties, and invite friends from one convenient dash
   - [Runing the tests](#running-the-tests)
   - [Deployment](#deployment)
   - [Built With](#built-with)
-  - [Contributing](#contributing)
   - [Versioning](#versioning)
   - [Acknowledgments](#acknowledgments)
 
 ## Getting Started
-
+  rake db:{drop,create,migrate,seed}
   - `rails db:create`
   - `bundle install`
 
@@ -95,11 +94,6 @@ Add additional notes about how to deploy this on a live system
   - [Creative Commons](https://creativecommons.org/) - Used to choose
     the license
 
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
-
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning. For the versions
@@ -113,6 +107,4 @@ who participated in this project.
 
 ## Acknowledgments
 
-  - Hat tip to anyone whose code was used
-  - Inspiration
-  - etc
+  - Thanks to [TheMovieDataBase API](https://developers.themoviedb.org/3/getting-started/introduction) team
