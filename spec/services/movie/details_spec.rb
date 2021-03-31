@@ -19,7 +19,7 @@ RSpec.describe 'the movieDB api service' do
     end
 
     describe '::reviews for' do
-      it "returns reviews ostruct array" do
+      it "returns reviews array of ostructs" do
         VCR.use_cassette('rambo_7555_reviews') do
           result = TMDBService.reviews_for(7555)
 
@@ -31,7 +31,7 @@ RSpec.describe 'the movieDB api service' do
     end
 
     describe '::cast_for' do
-      it 'returns array or ostruct, each with actor and character names' do
+      it 'returns array of ostructs, each with actor and character names' do
         VCR.use_cassette('rambo_movie_cast') do
           result = TMDBService.cast_for(7555, 10)
 
@@ -47,6 +47,11 @@ RSpec.describe 'the movieDB api service' do
           expect(last.actor).to eq('Cameron Pearson')
           expect(last.character).to eq('Jeff')
         end
+      end
+
+      it 'returns empty array (and does not hit the endpoint) if limit is <= 0' do
+        expect(TMDBService.cast_for(7555, 0)).to eq([])
+        expect(TMDBService.cast_for(7555, -1)).to eq([])
       end
     end
   end

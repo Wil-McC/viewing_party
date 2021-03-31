@@ -88,17 +88,17 @@ class TMDBService < ApiService
   end
 
   def self.cast_for(id, limit)
+    return [] if limit < 1
     result = @@conn.get("3/movie/#{id}/credits")
     # TODO will crash if result is ''
     data = res_parse(result)
 
-    create_cast_struct(data, limit)
+    create_cast_structs(data, limit)
   end
 
   def self.reviews_for(id)
-    endpoint = "3/movie/#{id}/reviews"
-    result = @@conn.get(endpoint)
-    # breaks if response is empty?
+    result = @@conn.get("3/movie/#{id}/reviews")
+    # TODO will crash if result is ''
     data = res_parse(result)
 
     create_review_structs(data[:results])
@@ -122,7 +122,7 @@ class TMDBService < ApiService
     end
   end
 
-  def self.create_cast_struct(data, limit)
+  def self.create_cast_structs(data, limit)
     cast = []
     data[:cast].each_with_index do |cast_member, i|
       break if i == limit
