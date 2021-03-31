@@ -27,6 +27,13 @@ RSpec.describe 'Discover page' do
         end
       end
     end
+    it "has a trending weekly button that populates results on click" do
+      VCR.use_cassette('trending_weekly') do
+        click_on "Trending This Week"
+
+        expect(current_path).to eq(movies_path)
+      end
+    end
     it "has a search field that returns max 40 matching results on submit" do
       VCR.use_cassette('rambo_search') do
         visit discover_path
