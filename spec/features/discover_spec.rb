@@ -34,7 +34,7 @@ RSpec.describe 'Discover page' do
         click_on 'Trending This Week'
 
         expect(current_path).to eq(movies_path)
-        save_and_open_page
+
         within('#results') do
           expect(page).to have_selector('p', count: 40)
         end
