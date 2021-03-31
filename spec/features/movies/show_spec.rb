@@ -46,16 +46,14 @@ RSpec.describe 'Movie details page' do
             expect(cast_elements.first.text).to eq('Sylvester Stallone as John Rambo')
             expect(cast_elements.last.text).to eq('Cameron Pearson as Jeff')
           end
-          save_and_open_page
         end
       end
     end
 
     describe 'reviews section' do
       it "shows all reviews" do
-        login_and_visit_path
-
         VCR.use_cassette('rambo_movie_show_page') do
+          login_and_visit_path
           within('#info #reviews') do
             review_elements = page.find_all('.review')
 
