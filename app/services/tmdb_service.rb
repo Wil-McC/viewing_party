@@ -105,4 +105,22 @@ class TMDBService < ApiService
       genre[:name]
     end
   end
+
+  def self.reviews_for(id)
+    endpoint = "3/movie/#{id}/reviews"
+    result = @@conn.get(endpoint)
+    # breaks if response is empty?
+    data = res_parse(result)
+
+    create_review_structs(data[:results])
+  end
+
+  def self.create_review_structs(data)
+    data.map do |review|
+      OpenStruct.new({
+        author: review[:author],
+        content: review[:content]
+      })
+    end
+  end
 end
