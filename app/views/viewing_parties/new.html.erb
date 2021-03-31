@@ -5,6 +5,7 @@
 <br>
 <%= form_with model: @party, url: parties_path, local: true do |form| %>
   <%= form.label :duration, "Duration of Party" %>
+  <%= require "pry"; binding.pry %>
   <%= form.number_field :duration, min: 180 %><br>
   <br>
   <%= form.label :date_and_time, "Date and Time" %><br>
