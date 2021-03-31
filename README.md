@@ -30,6 +30,9 @@ Browse movies, create watch parties, and invite friends from one convenient dash
   - [Adam Bowers](https://www.linkedin.com/in/adam-bowers-06a871209/)
   - [Wil McCauley](https://www.linkedin.com/in/wil-mccauley/)
 
+## Live App
+  - Visit the [SofaPop application site](https://morning-garden-45424.herokuapp.com/) and get the party started!
+
 ## Summary
 
   - [Getting Started](#getting-started)
