@@ -1,3 +1,4 @@
+<%# TODO change path the new_party_path %>
 <%= form_with url: '/', method: :get, local: true do |f| %>
   <%= f.hidden_field 'movie[api_id]', value: @movie_details.api_id %>
   <%= f.hidden_field 'movie[title]', value: @movie_details.title %>
