@@ -28,6 +28,7 @@ RSpec.describe 'the movieDB api service' do
           expect(result[0][:author]).to eq("JPV852")
         end
       end
+    end
 
     describe '::cast_for' do
       it 'returns array or ostruct, each with actor and character names' do
