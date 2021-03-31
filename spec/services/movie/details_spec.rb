@@ -55,5 +55,16 @@ RSpec.describe 'the movieDB api service' do
         expect(TMDBService.cast_for(7555, -1)).to eq([])
       end
     end
+    describe '::weekly_trending' do
+      it 'returns an array of 40 trending movie ostructs' do
+        VCR.use_cassette('trending_weekly') do
+          result = TMDBService.trending_weekly
+          
+          expect(result).to be_an(Array)
+          expect(result.length).to eq(40)
+        end
+      end
+    end
+
   end
 end
