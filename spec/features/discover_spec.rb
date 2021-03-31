@@ -6,12 +6,12 @@ RSpec.describe 'Discover page' do
       @user = create(:user)
       perform_login(@user)
     end
-    it "shows discover page with welcome message" do
+    it 'shows discover page with welcome message' do
       visit discover_path
 
       expect(page).to have_content("Welcome #{@user.email}")
     end
-    it "has a top rated button that populates results on click" do
+    it 'has a top rated button that populates results on click' do
       visit discover_path
 
       VCR.use_cassette('movies') do
@@ -27,11 +27,17 @@ RSpec.describe 'Discover page' do
         end
       end
     end
-    it "has a trending weekly button that populates results on click" do
+    it 'has a trending weekly button that populates results on click' do
+      visit discover_path
+
       VCR.use_cassette('trending_weekly') do
-        click_on "Trending This Week"
+        click_on 'Trending This Week'
 
         expect(current_path).to eq(movies_path)
+        save_and_open_page
+        within('#results') do
+          expect(page).to have_selector('p', count: 40)
+        end
       end
     end
     it "has a search field that returns max 40 matching results on submit" do
@@ -55,12 +61,12 @@ RSpec.describe 'Discover page' do
       perform_login(@user)
     end
     xit "shows flash message when top 40 call fails - 404" do
-      stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['MDB_KEY']}&page=1").
-         with(
-           headers: {
-             "api_key": ENV['MDB_KEY']
-           }).
-         to_return(status: 404, body: "", headers: {})
+      stub_request(:get, "https://api.themoviedb.org/3/movie/top_rated?api_key=#{ENV['MDB_KEY']}&page=1")
+        .with(
+          headers: {
+            'api_key': ENV['MDB_KEY']
+          })
+        .to_return(status: 404, body: '', headers: {})
 
       visit discover_path
 
