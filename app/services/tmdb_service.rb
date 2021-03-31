@@ -104,7 +104,25 @@ class TMDBService < ApiService
     create_review_structs(data[:results])
   end
 
+  def self.trending_weekly
+    result = @@conn.get('3/trending/movie/week')
+    # TODO will crash if result is ''
+    data = res_parse(result)
+
+    create_movie_structs(data[:results])
+  end
+
   private
+
+  # refactor movies method to use this
+  def self.create_movie_structs(results)
+    results.map do |movie|
+      OpenStruct.new({
+        id: movie[:id],
+        info: [movie[:title], movie[:vote_average]]
+      })
+    end
+  end
 
   def self.create_details_struct(data)
     OpenStruct.new({
