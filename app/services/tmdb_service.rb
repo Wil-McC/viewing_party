@@ -2,7 +2,6 @@ require 'faraday'
 require 'json'
 
 class TMDBService < ApiService
-
   def self.top_forty
     counters = [1, 2]
     counters.reduce([]) do |arr, count|
@@ -77,6 +76,72 @@ class TMDBService < ApiService
       end
     elsif data.length == 0
       'Your search returned no results'
+    end
+  end
+
+  def self.details_for(id)
+    result = @@conn.get("3/movie/#{id}")
+    # TODO will crash if result is ''
+    data = res_parse(result)
+
+    create_details_struct(data)
+  end
+
+  def self.cast_for(id, limit)
+    return [] if limit < 1
+    result = @@conn.get("3/movie/#{id}/credits")
+    # TODO will crash if result is ''
+    data = res_parse(result)
+
+    create_cast_structs(data, limit)
+  end
+
+  def self.reviews_for(id)
+    result = @@conn.get("3/movie/#{id}/reviews")
+    # TODO will crash if result is ''
+    data = res_parse(result)
+
+    create_review_structs(data[:results])
+  end
+
+  private
+
+  def self.create_details_struct(data)
+    OpenStruct.new({
+      api_id: data[:id],
+      title: data[:title],
+      vote_average: data[:vote_average],
+      runtime: data[:runtime],
+      genres: parse_genres(data[:genres]),
+      summary: data[:overview]
+    })
+  end
+
+  def self.parse_genres(genres)
+    genres.map do |genre|
+      genre[:name]
+    end
+  end
+
+  def self.create_cast_structs(data, limit)
+    cast = []
+    data[:cast].each_with_index do |cast_member, i|
+      break if i == limit
+      cast << OpenStruct.new({
+        actor: cast_member[:name],
+        character: cast_member[:character]
+      })
+    end
+
+    cast
+  end
+
+  def self.create_review_structs(data)
+    data.map do |review|
+      OpenStruct.new({
+        author: review[:author],
+        content: review[:content]
+      })
     end
   end
 end
