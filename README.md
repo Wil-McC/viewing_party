@@ -1,26 +1,3 @@
-# Viewing Party
-
-This is the base repo for the [viewing party project](https://backend.turing.io/module3/projects/viewing_party) used for Turing's Backend Module 3.
-
-### About this Project
-
-Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
-
-## Local Setup
-
-1. Fork and Clone the repo
-2. Install gem packages: `bundle install`
-3. Setup the database: `rails db:create`
-
-
-## Versions
-
-- Ruby 2.5.3
-
-- Rails 5.2.4.3
-
-Example wireframes to follow are found [here](https://backend.turing.io/module3/projects/viewing_party/wireframes)
-
 # SofaPop
 
 Browse movies, create watch parties, and invite friends from one convenient dashboard-based application! Not sure what to watch with the gang? Check out current top rated movies, or search for an old favorite. View movie info including current user rating, cast, film length and more. Keep track of your watch parties on your dashboard, and invite friends to parties you host using their [name] account email.
@@ -33,10 +10,10 @@ Browse movies, create watch parties, and invite friends from one convenient dash
 ## Live App
   - Visit the [SofaPop application site](https://morning-garden-45424.herokuapp.com/) and get the party started!
 
-## Summary
+## Index
 
   - [Getting Started](#getting-started)
-  - [Runing the tests](#running-the-tests)
+  - [Running the tests](#running-the-tests)
   - [Deployment](#deployment)
   - [Built With](#built-with)
   - [Versioning](#versioning)
@@ -111,3 +88,6 @@ who participated in this project.
 ## Acknowledgments
 
   - Thanks to [TheMovieDataBase API](https://developers.themoviedb.org/3/getting-started/introduction) team
+
+
+Example wireframes we followed are found [here](https://backend.turing.io/module3/projects/viewing_party/wireframes)
