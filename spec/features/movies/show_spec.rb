@@ -52,7 +52,17 @@ RSpec.describe 'Movie details page' do
     end
 
     describe 'reviews section' do
-      # List all reviews with authors
+      it "shows all reviews" do
+        login_and_visit_path
+
+        VCR.use_cassette('rambo_movie_show_page') do
+          within('#info #reviews') do
+            review_elements = page.find_all('.review')
+
+            expect(review_elements.length).to eq(2)
+          end
+        end
+      end
     end
   end
 
