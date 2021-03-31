@@ -19,4 +19,13 @@
     </ul>
   </section>
   <hr>
+  <section id="reviews">
+    <h3>Reviews - <%= @movie_reviews.length %> Total</h3>
+    <% @movie_reviews.each do |review| %>
+      <div class='review'>
+        <b><%= review[:author] %></b><br>
+        <p><%= review[:content] %></p>
+      </div>
+    <% end %>
+  </section>
 </div>
