@@ -17,5 +17,16 @@ RSpec.describe 'the movieDB api service' do
         end
       end
     end
+    describe '::reviews for' do
+      it "returns reviews ostruct array" do
+        VCR.use_cassette('rambo_7555_reviews') do
+          result = TMDBService.reviews_for(7555)
+
+          expect(result.length).to eq(2)
+          expect(result.class).to eq(Array)
+          expect(result[0][:author]).to eq("JPV852")
+        end
+      end
+    end
   end
 end
