@@ -3,11 +3,11 @@ class MoviesController < ApplicationController
 
   def index
     if params[:query] == 'top_forty'
-      @results = TMDBService.movies
+      @results = TMDBService.movies_top
     elsif params[:query] == 'weekly_trending_api'
-      @results = TMDBService.trending_weekly
+      @results = TMDBService.movies_trending
     else
-      @results = TMDBService.results(params[:query])
+      @results = TMDBService.movie_search(params[:query])
     end
   end
 
