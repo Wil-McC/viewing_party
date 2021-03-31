@@ -13,11 +13,6 @@ RSpec.describe 'creating a new viewing party' do
     end
 
     it 'displays a form with duration of party' do
-
-      movie = create(:movie)
-
-      require "pry"; binding.pry
-
       user_1 = create(:user)
       user_2 = create(:user)
       user_3 = create(:user)
@@ -37,8 +32,8 @@ RSpec.describe 'creating a new viewing party' do
 
       visit new_party_path
 
-      # fill_in 'party[start_time]', with: '20220101\t0315'
-      fill_in 'party[start_time]', with: '20220101111'
+      fill_in 'party[start_time]', with: '20220101\t0315'
+      # fill_in 'party[start_time]', with: '20220101111'
       fill_in 'party[duration]', with: 190
 
       within("#friend-#{friendship_1.friend_id}") do
@@ -48,8 +43,6 @@ RSpec.describe 'creating a new viewing party' do
       within("#friend-#{friendship_3.friend_id}") do
         page.check
       end
-
-      save_and_open_page
 
       click_on 'Create Party'
 
