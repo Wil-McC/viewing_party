@@ -31,7 +31,7 @@ class ViewingPartiesController < ApplicationController
     # end
 
 
-    if params.has_key?(:friend_user_ids)
+    if params.key?(:friend_user_ids)
       params[:friend_user_ids].each do |id|
         invited = Invitee.new(user_id: id, party_id: new_party.id)
         invited.save

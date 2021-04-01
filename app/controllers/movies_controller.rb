@@ -2,13 +2,13 @@ class MoviesController < ApplicationController
   before_action :require_login
 
   def index
-    if params[:query] == 'top_forty'
-      @results = MoviesFacade.movies_top
-    elsif params[:query] == 'weekly_trending_api'
-      @results = MoviesFacade.movies_trending
-    else
-      @results = MoviesFacade.movie_search(params[:query])
-    end
+    @results = if params[:query] == 'top_forty'
+                 MoviesFacade.movies_top
+               elsif params[:query] == 'weekly_trending_api'
+                 MoviesFacade.movies_trending
+               else
+                 MoviesFacade.movie_search(params[:query])
+               end
   end
 
   def show
