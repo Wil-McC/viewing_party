@@ -84,7 +84,24 @@ class TMDBService < ApiService
     end
   end
 
+  def self.where_to_watch(id)
+    endpoint = "3/movie/#{id}/watch/providers"
+    res = @@conn.get(endpoint)
+    data = res_parse(res)[:results]
+    if data.length > 0
+      create_wtw_struct(data[:US][:link])
+    else
+      return nil
+    end
+  end
+
   private
+
+  def self.create_wtw_struct(path)
+    OpenStruct.new({
+      link: path
+    })
+  end
 
   def self.create_movie_structs(results)
     results.map do |movie|
