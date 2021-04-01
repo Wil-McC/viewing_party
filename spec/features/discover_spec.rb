@@ -51,6 +51,8 @@ RSpec.describe 'Discover page' do
 
           expect(current_path).to eq(movie_path(791373))
         end
+        expect(page).to_not have_content("Where to Watch Zack Snyder's Justice League")
+        expect(page).to_not have_link('View options to watch this movie legally')
       end
     end
     it "has a search field that returns max 40 matching results on submit" do

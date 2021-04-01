@@ -56,7 +56,7 @@ RSpec.describe 'User Dashboard Viewing Party Section' do
           expect(link.text).to eq(movie.name)
 
           # Date and time of event
-          expect(page).to have_content(hosted_party.start_time.strftime('%B %e, %Y'))
+          expect(page).to have_content(hosted_party.start_time.strftime('%B %-d, %Y'))
           expect(page).to have_content(hosted_party.start_time.strftime('%l:%M %p').strip)
 
           # That I am the host
@@ -103,7 +103,7 @@ RSpec.describe 'User Dashboard Viewing Party Section' do
           expect(link.text).to eq(movie.name)
 
           # Date and time of event
-          expect(page).to have_content(party.start_time.strftime('%B %e, %Y'))
+          expect(page).to have_content(party.start_time.strftime('%B %-d, %Y'))
           expect(page).to have_content(party.start_time.strftime('%l:%M %p').strip)
 
           # Who is hosting it

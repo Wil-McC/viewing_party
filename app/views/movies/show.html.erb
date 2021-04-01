@@ -1,5 +1,5 @@
 <%# TODO change path the new_party_path %>
-<%= form_with url: '/', method: :get, local: true do |f| %>
+<%= form_with url: new_party_path, method: :get, local: true do |f| %>
   <%= f.hidden_field 'movie[api_id]', value: @movie_details.api_id %>
   <%= f.hidden_field 'movie[title]', value: @movie_details.title %>
   <%= f.hidden_field 'movie[runtime]', value: @movie_details.runtime %>
@@ -34,6 +34,12 @@
         <b><%= review[:author] %></b><br>
         <p><%= review[:content] %></p>
       </div>
+    <% end %>
+  </section>
+  <section id="where_to_watch">
+    <% unless @where_to_watch == nil %>
+    <h3>Where to Watch <%= @movie_details.title %></h3>
+      <p><%= link_to 'View options to watch this movie legally', @where_to_watch.link %></p>
     <% end %>
   </section>
 </div>

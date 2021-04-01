@@ -1,6 +1,6 @@
 <div class='viewing-party-card'>
   <p><%= link_to party.movie.name, movie_path(party.movie) %></p>
-  <p>Date: <%= party.start_time.strftime('%B %e, %Y') %>
+  <p>Date: <%= party.start_time.strftime('%B %-d, %Y') %>
   <p>Time: <%= party.start_time.strftime('%l:%M %p').strip %>
   <% if party.user_id == user.id %>
     <p>Hosting</p>

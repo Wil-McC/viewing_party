@@ -4,11 +4,15 @@ class MoviesFacade
   end
 
   def self.cast_for(movie_api_id, limit)
-    @movie_cast = TMDBService.cast_for(movie_api_id, limit)
+    TMDBService.cast_for(movie_api_id, limit)
   end
 
   def self.reviews_for(movie_api_id)
-    @movie_reviews = TMDBService.reviews_for(movie_api_id)
+    TMDBService.reviews_for(movie_api_id)
+  end
+
+  def self.where_to_watch(movie_api_id)
+    TMDBService.where_to_watch(movie_api_id)
   end
 
   def self.movies_top

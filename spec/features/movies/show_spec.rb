@@ -8,7 +8,7 @@ RSpec.describe 'Movie details page' do
 
           expect(page).to have_button('Create Viewing Party for Movie')
           click_button('Create Viewing Party for Movie')
-          # expect(current_path).to eq(new_party_path)
+          expect(current_path).to eq(new_party_path)
         end
     end
 
@@ -64,6 +64,17 @@ RSpec.describe 'Movie details page' do
             review_elements = page.find_all('.review')
 
             expect(review_elements.length).to eq(2)
+          end
+        end
+      end
+    end
+    describe 'where to watch section' do
+      it 'has a link to a info page on services to watch movie with' do
+        VCR.use_cassette('w2w-feature') do
+          login_and_visit_path
+          within('#info #where_to_watch') do
+            expect(page).to have_content("Where to Watch Rambo")
+            expect(page).to have_link('View options to watch this movie legally')
           end
         end
       end

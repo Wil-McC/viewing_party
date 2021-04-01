@@ -38,6 +38,13 @@ RSpec.describe 'the movieDB api service' do
         ).to eq(true)
       end
     end
+    it "::where_to_watch" do
+      VCR.use_cassette('w2w') do
+        wtw = TMDBService.where_to_watch(7555)
+
+        expect(wtw.link).to eq('https://www.themoviedb.org/movie/7555-rambo/watch?locale=US')
+      end
+    end
   end
   describe '::movie_search' do
     it "return search result(s)" do

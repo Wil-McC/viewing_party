@@ -15,5 +15,6 @@ class MoviesController < ApplicationController
     @movie_details = MoviesFacade.details_for(params[:id])
     @movie_cast = MoviesFacade.cast_for(params[:id], 10)
     @movie_reviews = MoviesFacade.reviews_for(params[:id])
+    @where_to_watch = MoviesFacade.where_to_watch(params[:id])
   end
 end
