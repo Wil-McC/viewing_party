@@ -1,125 +1,76 @@
-# Viewing Party
+# SofaPop
 
-This is the base repo for the [viewing party project](https://backend.turing.io/module3/projects/viewing_party) used for Turing's Backend Module 3.
+_This project was built as a part of the contributor's study at the [Turing School of Software and Design](https://turing.io/). It was designed to teach basic authentication within a Rails application as well as how to consume an API which itself requires authentication._
 
-### About this Project
+Browse movies, create watch parties, and invite friends from one convenient dashboard-based application! Not sure what to watch with the gang? Check out current top rated movies, or search for an old favorite. View movie info including current user rating, cast, film length and more. Keep track of your watch parties on your dashboard, and invite friends to parties you host using their account email.
 
-Viewing party is an application in which users can explore movie options and create a viewing party event for the user and friend's.
+## Contributors
 
-## Local Setup
+  - [Alex Schwartz](https://www.linkedin.com/in/alex-s-77659758/)
+  - [Adam Bowers](https://www.linkedin.com/in/adam-bowers-06a871209/)
+  - [Wil McCauley](https://www.linkedin.com/in/wil-mccauley/)
 
-1. Fork and Clone the repo
-2. Install gem packages: `bundle install`
-3. Setup the database: `rails db:create`
+## Live App
 
+Visit the [SofaPop application site](https://morning-garden-45424.herokuapp.com/) and get the party started!
 
-## Versions
-
-- Ruby 2.5.3
-
-- Rails 5.2.4.3
-
-Example wireframes to follow are found [here](https://backend.turing.io/module3/projects/viewing_party/wireframes)
-
-# Project Title
-
-One Paragraph of project description goes here
-
-## Summary
+## Index
 
   - [Getting Started](#getting-started)
-  - [Runing the tests](#running-the-tests)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
-  - [Authors](#authors)
-  - [License](#license)
+  - [Installing](#installing)
+  - [Test Suite](#test-suite)
+  - [Functionality](#functionality)
   - [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on
-your local machine for development and testing purposes. See deployment
-for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-    Give examples
+This project is built with:
+- Rails 2.5.5
+- Ruby 2.5.3
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development
-env running
+1. Clone this repo:
+  ```sh
+  $ git clone git@github.com:Wil-McC/viewing_party.git
+  ```
 
-Say what the step will be
+2. Install dependencies:
+  ```sh
+  $ bundle install
+  ```
 
-    Give the example
+3. Setup database:
+  ```sh
+  $ rails db:{drop,create,migrate}
+  ```
 
-And repeat
+## Test Suite
 
-    until finished
+This app uses RSpec for testing. Run the test suite with:
+```sh
+$ bundle exec rspec
+```
 
-End with an example of getting some data out of the system or using it
-for a little demo
+## Functionality
+After logging in, your user dashboard shows all of your friends and current viewing parties:
+>![Dashboard](https://user-images.githubusercontent.com/14796798/113232310-86be4980-9262-11eb-8ef7-b5e03c02dbe4.png)
 
-## Running the tests
+By clicking 'Discover Movies' you can search for a movie by name, or click the links for other lists:
+>![Search](https://user-images.githubusercontent.com/14796798/113232465-c6853100-9262-11eb-8944-ac6892a63b86.png)
 
-Explain how to run the automated tests for this system
+Clicking on a result leads you to a details page for that movie:
+>![Result List](https://user-images.githubusercontent.com/14796798/113232552-f7fdfc80-9262-11eb-920f-6a5adb03600f.png)
 
-### Break down into end to end tests
+Here, you can create a viewing party for that movie:
+>![Movie Info](https://user-images.githubusercontent.com/14796798/113232692-46130000-9263-11eb-84b8-0dccedab1427.png)
 
-Explain what these tests test and why
-
-    Give an example
-
-### And coding style tests
-
-Explain what these tests test and why
-
-    Give an example
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-  - [Contributor Covenant](https://www.contributor-covenant.org/) - Used
-    for the Code of Conduct
-  - [Creative Commons](https://creativecommons.org/) - Used to choose
-    the license
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code
-of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions
-available, see the [tags on this
-repository](https://github.com/PurpleBooth/a-good-readme-template/tags).
-
-## Authors
-
-  - **Billie Thompson** - *Provided README Template* -
-    [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of
-[contributors](https://github.com/PurpleBooth/a-good-readme-template/contributors)
-who participated in this project.
-
-## License
-
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details
+Add your time & invite your friends. Create the party, and you'll see it now on your dashboard!
+>![Create Viewing Party](https://user-images.githubusercontent.com/14796798/113234686-5e851980-9267-11eb-83e1-a9abc8cc6dc9.png)
+>![Viewing Party Added](https://user-images.githubusercontent.com/14796798/113234827-a0ae5b00-9267-11eb-8f89-cdd5550f14f4.png)
 
 ## Acknowledgments
 
-  - Hat tip to anyone whose code was used
-  - Inspiration
-  - etc
+<img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg" alt="The MovieDB Logo" width="75px" style="margin:10px"> Thank you to <a href="https://www.themoviedb.org/about/logos-attribution">The MovieDB</a> for providing the movie data that is used in this application.
