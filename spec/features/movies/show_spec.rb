@@ -68,6 +68,17 @@ RSpec.describe 'Movie details page' do
         end
       end
     end
+    describe 'where to watch section' do
+      it 'has a link to a info page on services to watch movie with' do
+        VCR.use_cassette('w2w-feature') do
+          login_and_visit_path
+          within('#info #where_to_watch') do
+            expect(page).to have_content("Where to Watch Rambo")
+            expect(page).to have_link('View options to watch this movie legally')
+          end
+        end
+      end
+    end
   end
 
   describe 'as a non-authenticated user' do
