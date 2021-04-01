@@ -2,6 +2,6 @@ class Invitee < ApplicationRecord
   belongs_to :user
   belongs_to :party
 
-  validates_presence_of :user_id,
-                        :party_id
+  validates :user_id,
+            :party_id, presence: true
 end
