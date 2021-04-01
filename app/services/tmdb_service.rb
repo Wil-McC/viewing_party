@@ -9,19 +9,15 @@ class TMDBService < ApiService
       response = @@conn.get(endpoint) do |req|
         req.params['page'] = count
       end
-      json = response.body
-      data = JSON.parse(json, symbolize_names: true)
+
+      data = res_parse(response)
       arr << data[:results]
-      arr
     end
   end
 
-  def self.movies
-    counters = [0, 1]
-    counters.each_with_object({}) do |count, hash|
-      top_forty[count].each do |movie|
-        hash[movie[:id]] = [movie[:title], movie[:vote_average]]
-      end
+  def self.movies_top
+    top_forty.flat_map do |page|
+      create_movie_structs(page)
     end
   end
 
@@ -29,11 +25,12 @@ class TMDBService < ApiService
     string.gsub(/[ ]/, '+')
   end
 
-  def self.search_call(endpoint, string, page = 1)
-    @@conn.get(endpoint) do |req|
+  def self.search_call(string, page = 1)
+    res = @@conn.get('3/search/movie') do |req|
       req.params['query'] = string_cleaner(string)
       req.params['page'] = page
     end
+    res_parse(res)[:results]
   end
 
   def self.res_parse(response)
@@ -42,40 +39,9 @@ class TMDBService < ApiService
   end
 
   def self.movie_search(string)
-    endpoint = '3/search/movie'
-    response = search_call(endpoint, string)
-    data = res_parse(response)
-
-    acc = []
-    if data[:total_pages] > 1
-      acc << data[:results]
-      data = res_parse(search_call(endpoint, string, 2))
-      acc << data[:results]
-    elsif data[:total_pages] == 1
-      acc << data[:results]
-    elsif data[:total_pages] == 0
-      return acc
-    end
-
-    acc
-  end
-
-  def self.results(string)
-    data = movie_search(string)
-    if data.length == 2
-      counters = [0, 1]
-      counters.each_with_object({}) do |count, hash|
-        data[count].each do |movie|
-          hash[movie[:id]] = [movie[:title], movie[:vote_average]]
-        end
-      end
-    elsif data.length == 1
-      hash = {}
-      data[0].each_with_object({}) do |movie, hash|
-        hash[movie[:id]] = [movie[:title], movie[:vote_average]]
-      end
-    elsif data.length == 0
-      'Your search returned no results'
+    result = [search_call(string), search_call(string, 2)]
+    result.flat_map do |page|
+      create_movie_structs(page)
     end
   end
 
@@ -104,7 +70,31 @@ class TMDBService < ApiService
     create_review_structs(data[:results])
   end
 
+  def self.trending_40_call(page = 1)
+    res = @@conn.get('3/trending/movie/week') do |req|
+      req.params['page'] = page
+    end
+    res_parse(res)[:results]
+  end
+
+  def self.movies_trending
+    result = [trending_40_call, trending_40_call(2)]
+    result.flat_map do |page|
+      create_movie_structs(page)
+    end
+  end
+
   private
+
+  def self.create_movie_structs(results)
+    results.map do |movie|
+      OpenStruct.new({
+        id: movie[:id],
+        title: movie[:title],
+        rating: movie[:vote_average]
+      })
+    end
+  end
 
   def self.create_details_struct(data)
     OpenStruct.new({

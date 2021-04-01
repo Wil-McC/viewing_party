@@ -2,10 +2,12 @@ class MoviesController < ApplicationController
   before_action :require_login
 
   def index
-    if params[:query] == "top_forty"
-      @results = TMDBService.movies
+    if params[:query] == 'top_forty'
+      @results = TMDBService.movies_top
+    elsif params[:query] == 'weekly_trending_api'
+      @results = TMDBService.movies_trending
     else
-      @results = TMDBService.results(params[:query])
+      @results = TMDBService.movie_search(params[:query])
     end
   end
 
