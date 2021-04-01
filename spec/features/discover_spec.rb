@@ -40,6 +40,19 @@ RSpec.describe 'Discover page' do
         end
       end
     end
+    it "goes to movie show page on title click" do
+      visit discover_path
+
+      VCR.use_cassette('trending_weekly') do
+        click_on 'Trending This Week'
+
+        within('#results') do
+          click_on "Zack Snyder's Justice League - 8.6"
+
+          expect(current_path).to eq(movie_path(791373))
+        end
+      end
+    end
     it "has a search field that returns max 40 matching results on submit" do
       VCR.use_cassette('rambo_search') do
         visit discover_path
