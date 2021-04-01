@@ -8,7 +8,7 @@ RSpec.describe 'Movie details page' do
 
           expect(page).to have_button('Create Viewing Party for Movie')
           click_button('Create Viewing Party for Movie')
-          # expect(current_path).to eq(new_party_path)
+          expect(current_path).to eq(new_party_path)
         end
     end
 

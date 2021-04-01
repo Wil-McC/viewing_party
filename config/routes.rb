@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   post '/friendships', to: 'friendships#create'
 
   resources :movies, only: [:index, :show]
+
+  # resources :viewing_party, only: [:new, :create]
+  resources :parties, only: [:new, :create], controller: "viewing_parties"
 end
