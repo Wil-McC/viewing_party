@@ -1,5 +1,5 @@
 <section id='results'>
   <% @results.each do |result| %>
-    <p><%= link_to "#{result.title} - #{result.rating}", url: movie_path(result.id) %></p>
+    <p><%= link_to "#{result.title} - #{result.rating}", movie_path(result.id) %></p>
   <% end %>
 </section>
